@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Training Schedule - ActiLife Style</title>
+    <title>Training Schedule - ActiLife Style (Online)</title>
     <!-- Importing Prompt font -->
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
@@ -23,188 +23,125 @@
             --success-color: #28a745;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Prompt', sans-serif;
             background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             color: var(--text-color);
             line-height: 1.6;
         }
 
         /* --- Navbar --- */
         .navbar {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
+            position: fixed; top: 0; left: 0; width: 100%;
             background-color: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             padding: 10px 20px;
         }
 
         .nav-logo {
             color: var(--primary-color);
-            font-weight: 700;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-weight: 700; font-size: 1.2rem;
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .status-indicators {
+            display: flex; gap: 10px; align-items: center;
         }
 
         .admin-badge {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: none; /* Hidden by default */
+            background-color: var(--accent-color); color: white;
+            padding: 4px 10px; border-radius: 20px; font-size: 0.8rem;
+            display: none;
         }
 
-        /* --- Page Layout (A4 Style) --- */
+        .db-status {
+            font-size: 0.8rem; color: #666; display: flex; align-items: center; gap: 5px;
+        }
+        .db-status.online { color: var(--success-color); }
+        .db-status.offline { color: var(--danger-color); }
+
+        /* --- Page Layout --- */
         .page {
             background-color: var(--paper-color);
-            width: 210mm;
-            min-height: 297mm;
+            width: 210mm; min-height: 297mm;
             margin: 90px auto 40px auto;
             padding: 20mm;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
             position: relative;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
         }
 
         h1 {
-            color: var(--primary-color);
-            text-align: center;
+            color: var(--primary-color); text-align: center;
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            padding-bottom: 10px; margin-bottom: 20px;
             font-size: 24pt;
         }
 
-        /* --- Calendar Section --- */
+        /* --- Calendar --- */
         .calendar-container {
-            margin-bottom: 30px;
-            background: #fafafa;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 15px;
+            margin-bottom: 30px; background: #fafafa;
+            border: 1px solid #eee; border-radius: 8px; padding: 15px;
         }
 
         .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-            font-weight: 600;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; color: var(--secondary-color); font-weight: 600;
         }
 
         .calendar-nav-btn {
-            background: none;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: none; border: 1px solid var(--primary-color);
+            color: var(--primary-color); border-radius: 50%;
+            width: 30px; height: 30px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
             transition: all 0.2s;
         }
-        
-        .calendar-nav-btn:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .calendar-month-label {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
+        .calendar-nav-btn:hover { background-color: var(--primary-color); color: white; }
 
         .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            text-align: center;
+            display: grid; grid-template-columns: repeat(7, 1fr);
+            gap: 5px; text-align: center;
         }
 
         .calendar-day-head {
-            font-size: 10pt;
-            font-weight: 600;
-            color: #888;
-            padding-bottom: 5px;
+            font-size: 10pt; font-weight: 600; color: #888; padding-bottom: 5px;
         }
 
         .calendar-date {
-            padding: 8px;
-            font-size: 11pt;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 8px; font-size: 11pt; cursor: pointer;
+            border-radius: 4px; transition: all 0.2s;
+            border: 1px solid transparent; min-height: 40px;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        .calendar-date:hover {
-            background-color: var(--active-tab-bg);
-            color: var(--primary-color);
-        }
+        .calendar-date:hover { background-color: var(--active-tab-bg); color: var(--primary-color); }
 
         .calendar-date.has-program {
-            color: var(--primary-color);
-            text-decoration: underline;
-            font-weight: 600;
-            position: relative;
+            color: var(--primary-color); font-weight: 600; position: relative;
         }
-        
         .calendar-date.has-program::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
+            content: ''; position: absolute; bottom: 4px; left: 50%;
+            transform: translateX(-50%); width: 4px; height: 4px;
+            background-color: var(--accent-color); border-radius: 50%;
         }
 
         .calendar-date.active {
             background-color: var(--primary-color) !important;
-            color: white !important;
-            font-weight: bold;
-            border-color: var(--secondary-color);
+            color: white !important; font-weight: bold;
         }
         
-        .calendar-date.empty {
-            cursor: default;
-            background: none !important;
-        }
+        .calendar-date.empty { cursor: default; background: none !important; }
 
-        /* --- Schedule Items --- */
+        /* --- Content --- */
         .section-block {
-            margin-bottom: 30px;
-            animation: fadeIn 0.5s;
-            position: relative;
+            margin-bottom: 30px; animation: fadeIn 0.5s; position: relative;
         }
-
-        .section-block:hover .admin-item-controls {
-            display: flex;
-        }
+        .section-block:hover .admin-item-controls { display: flex; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -212,118 +149,74 @@
         }
 
         .h2-container {
-            background-color: #eef6ff;
-            border-left: 5px solid var(--primary-color);
-            border-radius: 4px;
-            padding: 8px 15px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: #eef6ff; border-left: 5px solid var(--primary-color);
+            border-radius: 4px; padding: 8px 15px; margin-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        h2 {
-            color: #444;
-            font-size: 16pt;
-            margin: 0;
-            flex-grow: 1;
-        }
+        h2 { color: #444; font-size: 16pt; margin: 0; flex-grow: 1; }
 
         .qty-label {
-            display: inline-block;
-            color: var(--accent-color);
-            font-weight: 700;
-            font-size: 14pt;
-            margin-bottom: 10px;
+            display: inline-block; color: var(--accent-color);
+            font-weight: 700; font-size: 14pt; margin-bottom: 10px;
         }
 
         p {
-            margin-bottom: 15px;
-            font-size: 13pt;
-            text-align: justify;
-            white-space: pre-line;
-            color: #555;
+            margin-bottom: 15px; font-size: 13pt; text-align: justify;
+            white-space: pre-line; color: #555;
         }
 
-        /* --- Media Containers --- */
+        /* --- Media & Effects --- */
         .media-container {
-            width: 100%;
-            margin: 15px 0;
-            text-align: center;
-            border: 2px dashed #ccc;
-            padding: 10px;
-            background-color: #fafafa;
-            border-radius: 8px;
+            width: 100%; margin: 15px 0; text-align: center;
+            border: 2px dashed #ccc; padding: 10px;
+            background-color: #fafafa; border-radius: 8px;
         }
 
         .media-container img {
-            max-width: 100%;
-            height: auto;
-            max-height: 350px;
-            border-radius: 4px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 100%; height: auto; max-height: 350px;
+            border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .cartoon-filter {
+            filter: contrast(140%) saturate(180%) brightness(110%) sepia(10%);
+            border: 3px solid #333; box-shadow: 5px 5px 0px rgba(0,0,0,0.2) !important;
         }
 
         .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            width: 100%;
-            border-radius: 4px;
+            position: relative; padding-bottom: 56.25%; height: 0;
+            overflow: hidden; width: 100%; border-radius: 4px;
         }
-
         .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
 
         .img-caption {
-            margin-top: 8px;
-            font-size: 11pt;
-            color: #888;
-            font-style: italic;
+            margin-top: 8px; font-size: 11pt; color: #888; font-style: italic;
         }
 
-        /* --- Admin Controls --- */
-        .admin-login-btn {
-            background: none; border: none; color: #ccc; cursor: pointer; font-size: 12px;
-        }
-        .admin-login-btn:hover { color: var(--primary-color); }
-
+        /* --- Admin UI --- */
         .admin-controls-area {
-            display: none; /* Show only if admin */
-            justify-content: center;
-            margin-top: 20px;
-            margin-bottom: 40px;
+            display: none; justify-content: center; margin-top: 20px;
         }
-
         .btn-add {
-            background-color: var(--success-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-family: 'Prompt';
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            background-color: var(--success-color); color: white; border: none;
+            padding: 10px 20px; border-radius: 30px; cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); font-family: 'Prompt';
         }
         .btn-add:hover { transform: scale(1.05); }
 
-        .admin-item-controls {
-            display: none; /* Show on hover if admin */
-            gap: 10px;
-        }
-
+        .admin-item-controls { display: none; gap: 10px; }
         .btn-icon {
-            background: white; border: 1px solid #ddd;
-            width: 30px; height: 30px; border-radius: 50%;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            color: #666; transition: all 0.2s;
+            background: white; border: 1px solid #ddd; width: 30px; height: 30px;
+            border-radius: 50%; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; color: #666;
         }
         .btn-icon:hover { color: var(--primary-color); border-color: var(--primary-color); }
         .btn-icon.delete:hover { color: var(--danger-color); border-color: var(--danger-color); }
+
+        .admin-login-btn { background: none; border: none; color: #ccc; cursor: pointer; }
 
         /* --- Modal --- */
         .modal-overlay {
@@ -334,52 +227,38 @@
         .modal-box {
             background: white; padding: 30px; border-radius: 8px;
             width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         .form-group { margin-bottom: 15px; }
-        .form-label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+        .form-label { display: block; margin-bottom: 5px; font-weight: 600; }
         .form-input, .form-textarea, .form-select {
             width: 100%; padding: 10px; border: 1px solid #ccc;
             border-radius: 4px; font-family: 'Prompt'; font-size: 1rem;
         }
         
-        /* Dynamic Qty Inputs */
         .qty-dynamic-wrapper {
             display: flex; gap: 10px; align-items: center;
-            background: #f8f9fa; padding: 10px; border-radius: 6px; border: 1px solid #eee;
+            background: #f8f9fa; padding: 10px; border-radius: 6px;
         }
-        .qty-unit-label { font-size: 0.9rem; color: #666; white-space: nowrap; }
+        .checkbox-wrapper {
+            display: flex; align-items: center; gap: 10px; margin-top: 10px;
+            background: #eef6ff; padding: 10px; border-radius: 6px;
+        }
 
         .modal-footer { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
         .btn { padding: 8px 20px; border-radius: 4px; border: none; cursor: pointer; font-family: 'Prompt'; }
         .btn-primary { background: var(--primary-color); color: white; }
         .btn-secondary { background: #eee; color: #333; }
 
-        /* --- Footer --- */
+        /* Footer */
         .footer-credit {
-            text-align: center;
-            margin-top: auto;
-            padding-top: 40px;
-            color: #bbb;
-            font-size: 12px;
-            font-weight: 600;
+            text-align: center; margin-top: auto; padding-top: 40px;
+            color: #bbb; font-size: 12px; font-weight: 600;
             display: flex; justify-content: center; gap: 10px; align-items: center;
         }
 
-        /* --- Responsive --- */
         @media screen and (max-width: 850px) {
             .page { width: 95%; padding: 15px; margin-top: 70px; }
-            h1 { font-size: 20pt; }
-            h2 { font-size: 14pt; }
-            p { font-size: 12pt; }
             .qty-dynamic-wrapper { flex-wrap: wrap; }
-        }
-
-        @media print {
-            body { background: white; }
-            .navbar, .admin-controls-area, .admin-item-controls, .footer-credit button { display: none !important; }
-            .page { box-shadow: none; margin: 0; width: 100%; padding: 0; border: none; }
-            .calendar-container { page-break-after: avoid; }
         }
     </style>
 </head>
@@ -390,371 +269,201 @@
             <i class="fa-solid fa-calendar-check"></i>
             TRAINEE HUB
         </div>
-        <div id="admin-badge" class="admin-badge">
-            <i class="fa-solid fa-user-shield"></i> ADMIN MODE
+        <div class="status-indicators">
+            <div id="db-status" class="db-status offline" title="เชื่อมต่อ Firebase">
+                <i class="fa-solid fa-circle"></i> Offline
+            </div>
+            <div id="admin-badge" class="admin-badge">
+                <i class="fa-solid fa-user-shield"></i> ADMIN
+            </div>
         </div>
     </nav>
 
     <div class="page">
         <h1>Training Program</h1>
 
-        <!-- Interactive Calendar -->
+        <!-- Calendar -->
         <div class="calendar-container">
             <div class="calendar-header">
-                <button class="calendar-nav-btn" onclick="changeMonth(-1)">
-                    <i class="fa-solid fa-chevron-left"></i>
-                </button>
-                <div class="calendar-month-label" id="month-year">
-                    <!-- JS will fill this -->
-                </div>
-                <button class="calendar-nav-btn" onclick="changeMonth(1)">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
+                <button class="calendar-nav-btn" onclick="window.changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="calendar-month-label" id="month-year"></div>
+                <button class="calendar-nav-btn" onclick="window.changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
-            
             <div style="font-size: 12px; font-weight: normal; color: #666; text-align: center; margin-bottom: 10px;">
-                เลือกวันที่เพื่อดูตารางฝึก
+                เลือกวันที่เพื่อดูตารางฝึก (ข้อมูลจะเชื่อมต่อกันทุกเครื่อง)
             </div>
-
-            <div class="calendar-grid" id="calendar-grid">
-                <!-- Days will be generated by JS -->
-            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
         </div>
 
-        <!-- Schedule Section -->
+        <!-- Content -->
         <div id="program-content">
-            <!-- Program details will be loaded here -->
             <div style="text-align: center; color: #999; margin-top: 50px;">
                 <i class="fa-solid fa-hand-pointer" style="font-size: 30px; display: block; margin-bottom: 10px;"></i>
-                กรุณาเลือกวันที่ในปฏิทินเพื่อดูรายการฝึกของคุณ
+                กรุณาเลือกวันที่
             </div>
         </div>
 
-        <!-- Admin Add Button Area (Visible only when date selected & admin logged in) -->
+        <!-- Admin Add -->
         <div id="admin-add-area" class="admin-controls-area">
-            <button class="btn-add" onclick="openEditModal()">
+            <button class="btn-add" onclick="window.openEditModal()">
                 <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรม
             </button>
         </div>
 
         <div class="footer-credit">
             KENG&copy; 2026
-            <button class="admin-login-btn" onclick="toggleAdminLogin()">
+            <button class="admin-login-btn" onclick="window.toggleAdminLogin()">
                 <i class="fa-solid fa-lock"></i>
             </button>
         </div>
     </div>
 
-    <!-- Edit/Add Modal -->
+    <!-- Modal -->
     <div id="edit-modal" class="modal-overlay">
         <div class="modal-box">
             <h3 style="margin-top: 0; color: var(--primary-color);">จัดการกิจกรรม</h3>
-            <input type="hidden" id="edit-index"> <!-- Store index of item being edited -->
+            <input type="hidden" id="edit-index">
             
             <div class="form-group">
-                <label class="form-label">ช่วงเวลา (Time)</label>
+                <label class="form-label">ช่วงเวลา</label>
                 <input type="text" id="inp-time" class="form-input" placeholder="e.g. 09:00 - 10:00">
             </div>
-            
             <div class="form-group">
-                <label class="form-label">หัวข้อ (Title)</label>
+                <label class="form-label">หัวข้อ</label>
                 <input type="text" id="inp-title" class="form-input" placeholder="ชื่อท่าฝึก">
             </div>
-            
             <div class="form-group">
-                <label class="form-label">รูปแบบปริมาณ (Format)</label>
-                <select id="inp-qty-type" class="form-select" onchange="toggleQtyInputs()">
-                    <option value="custom">ข้อความอิสระ (Custom)</option>
+                <label class="form-label">รูปแบบปริมาณ</label>
+                <select id="inp-qty-type" class="form-select" onchange="window.toggleQtyInputs()">
+                    <option value="custom">ข้อความอิสระ</option>
                     <option value="time">เวลา (Time)</option>
-                    <option value="sets">เซ็ต x ครั้ง (Sets/Reps)</option>
+                    <option value="sets">เซ็ต x ครั้ง</option>
                 </select>
             </div>
-
             <div class="form-group">
-                <label class="form-label">จำนวน (Quantity)</label>
-                <!-- Dynamic Input Container -->
-                <div id="qty-input-container">
-                    <!-- JS will inject inputs here -->
-                </div>
+                <label class="form-label">จำนวน</label>
+                <div id="qty-input-container"></div>
             </div>
-            
             <div class="form-group">
-                <label class="form-label">คำอธิบาย (Description)</label>
+                <label class="form-label">คำอธิบาย</label>
                 <textarea id="inp-desc" class="form-textarea" rows="4"></textarea>
             </div>
-            
             <div class="form-group">
-                <label class="form-label">ลิงก์สื่อ (Image/Video URL)</label>
-                <input type="text" id="inp-media" class="form-input" placeholder="Youtube URL หรือ Link รูปภาพ">
+                <label class="form-label">ลิงก์รูป/วิดีโอ</label>
+                <input type="text" id="inp-media" class="form-input" placeholder="URL">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="inp-cartoon">
+                    <label for="inp-cartoon">✨ เปิดเอฟเฟกต์การ์ตูน</label>
+                </div>
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeModal('edit-modal')">ยกเลิก</button>
-                <button class="btn btn-primary" onclick="saveActivity()">บันทึก</button>
+                <button class="btn btn-secondary" onclick="window.closeModal('edit-modal')">ยกเลิก</button>
+                <button class="btn btn-primary" onclick="window.saveActivity()">บันทึก</button>
             </div>
         </div>
     </div>
 
-    <script>
-        // Default Mock Data
-        const defaultData = {
-            "2026-01-05": [
-                {
-                    time: "08:00 - 08:30",
-                    title: "Morning Mobility",
-                    qty: "15-20 นาที",
-                    desc: "ยืดเหยียดเบาๆ เพื่อเปิดรับการทำงานของกล้ามเนื้อ เน้นบริเวณสะโพกและหลังส่วนล่าง",
-                    media: "https://images.unsplash.com/photo-1552196564-972b49916d62?auto=format&fit=crop&w=600&q=80",
-                    type: "img"
-                },
-                {
-                    time: "08:30 - 09:30",
-                    title: "Push-Up Fundamentals",
-                    qty: "4 เซ็ต x 12 ครั้ง",
-                    desc: "วิดพื้นพื้นฐาน พยายามรักษาลำตัวให้ตรงและลงให้สุด\n- พักระหว่างเซ็ต 60 วินาที",
-                    media: "https://www.youtube.com/watch?v=IODxDxX7oi4",
-                    type: "video"
-                }
-            ],
-            "2026-01-06": [
-                { time: "09:00 - 10:30", title: "Lower Body Strength", qty: "4 เซ็ต x 15 ครั้ง", desc: "เน้นท่า Squat และ Lunges", media: "https://images.unsplash.com/photo-1574680096141-1cddd32e01f9?auto=format&fit=crop&w=600&q=80", type: "img" }
-            ],
-            "2026-02-14": [
-                { time: "10:00 - 11:30", title: "Partner Workout", qty: "60 นาที", desc: "กิจกรรมคู่ Valentine Special", media: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=600&q=80", type: "img" }
-            ]
+    <!-- ========================================================= -->
+    <!-- FIREBASE MODULE SCRIPT -->
+    <!-- ========================================================= -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        import { getFirestore, collection, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // ==========================================
+        // 🚨 ตั้งค่า Firebase Config (อัปเดตแล้ว)
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCkJVRiVbLCKHe4Z7z2WZZxcxx8ychh2V0",
+            authDomain: "trainee-hub-26b69.firebaseapp.com",
+            projectId: "trainee-hub-26b69",
+            storageBucket: "trainee-hub-26b69.firebasestorage.app",
+            messagingSenderId: "997452424026",
+            appId: "1:997452424026:web:42b0687fbed1da4212c963",
+            measurementId: "G-1BXFX7TBX5"
         };
 
-        // State Variables
-        let trainingDatabase = {};
-        let currentMonth = 0; 
-        let currentYear = 2026;
+        let db;
+        let analytics;
+        let trainingDatabase = {}; // Local Mirror
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
         let selectedDate = null;
         let isAdmin = false;
 
-        const monthNamesThai = [
-            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-            "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
-        ];
-
-        // --- Initialization ---
-        function initApp() {
-            // Load from LocalStorage
-            const stored = localStorage.getItem('actilife_schedule_v1');
-            if (stored) {
-                trainingDatabase = JSON.parse(stored);
-            } else {
-                trainingDatabase = JSON.parse(JSON.stringify(defaultData));
-            }
+        // Initialize App
+        try {
+            const app = initializeApp(firebaseConfig);
+            analytics = getAnalytics(app); // Initialize Analytics
+            db = getFirestore(app);
             
-            // Check Admin Session (Optional: could persist session)
-            const sessionAdmin = sessionStorage.getItem('actilife_admin');
-            if(sessionAdmin === 'true') enableAdminMode();
+            document.getElementById('db-status').innerHTML = '<i class="fa-solid fa-circle"></i> Online';
+            document.getElementById('db-status').className = 'db-status online';
+            
+            // Real-time Listener
+            const unsub = onSnapshot(collection(db, "schedules"), (snapshot) => {
+                snapshot.docChanges().forEach((change) => {
+                    const date = change.doc.id;
+                    const data = change.doc.data();
+                    if (change.type === "removed") {
+                        delete trainingDatabase[date];
+                    } else {
+                        trainingDatabase[date] = data.items || [];
+                    }
+                });
+                
+                // Initial Load or Updates
+                if(snapshot.empty && Object.keys(trainingDatabase).length === 0) {
+                    // Optional: Load defaults if completely empty
+                } else {
+                    snapshot.forEach((doc) => {
+                       trainingDatabase[doc.id] = doc.data().items; 
+                    });
+                }
 
+                renderCalendar(currentMonth, currentYear);
+                if(selectedDate) renderProgram(selectedDate);
+            });
+
+        } catch(e) {
+            console.error("Firebase Init Error:", e);
+            document.getElementById('db-status').innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Error';
+            document.getElementById('db-status').className = 'db-status offline';
+            alert("Firebase Error: " + e.message);
+        }
+
+        // --- Functions Exposed to Window ---
+        
+        window.changeMonth = (step) => {
+            currentMonth += step;
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            else if (currentMonth < 0) { currentMonth = 11; currentYear--; }
             renderCalendar(currentMonth, currentYear);
-        }
+        };
 
-        function saveData() {
-            localStorage.setItem('actilife_schedule_v1', JSON.stringify(trainingDatabase));
-            renderCalendar(currentMonth, currentYear); // Re-render to update dots
-            if(selectedDate) renderProgram(selectedDate);
-        }
-
-        // --- Admin Logic ---
-        function toggleAdminLogin() {
+        window.toggleAdminLogin = () => {
             if (isAdmin) {
-                // Logout
                 isAdmin = false;
                 sessionStorage.removeItem('actilife_admin');
                 location.reload();
             } else {
-                // Login
-                const password = prompt("กรุณาใส่รหัสผ่าน Admin:");
-                if (password === "O625144198") { // Simple Password
-                    enableAdminMode();
-                } else if (password) {
-                    alert("รหัสผ่านไม่ถูกต้อง");
-                }
+                const password = prompt("Admin Password:");
+                if (password === "admin") {
+                    isAdmin = true;
+                    sessionStorage.setItem('actilife_admin', 'true');
+                    updateAdminUI();
+                } else if (password) alert("Wrong Password");
             }
-        }
+        };
 
-        function enableAdminMode() {
-            isAdmin = true;
-            sessionStorage.setItem('actilife_admin', 'true');
-            document.getElementById('admin-badge').style.display = 'block';
-            if(selectedDate) document.getElementById('admin-add-area').style.display = 'flex';
-            // Re-render current view if date selected
-            if(selectedDate) renderProgram(selectedDate);
-        }
-
-        // --- Calendar Logic ---
-        function changeMonth(step) {
-            currentMonth += step;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            } else if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            }
-            renderCalendar(currentMonth, currentYear);
-        }
-
-        function renderCalendar(month, year) {
-            const grid = document.getElementById('calendar-grid');
-            grid.innerHTML = "";
-            document.getElementById('month-year').innerText = `${monthNamesThai[month]} ${year + 543} (${year})`;
-
-            const dayNames = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
-            dayNames.forEach(name => {
-                const el = document.createElement('div');
-                el.className = 'calendar-day-head';
-                el.innerText = name;
-                grid.appendChild(el);
-            });
-
-            const firstDay = new Date(year, month, 1).getDay();
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-            for (let i = 0; i < firstDay; i++) {
-                const el = document.createElement('div');
-                el.className = 'calendar-date empty';
-                grid.appendChild(el);
-            }
-
-            for (let d = 1; d <= daysInMonth; d++) {
-                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-                const el = document.createElement('div');
-                el.className = 'calendar-date';
-                
-                if (trainingDatabase[dateStr] && trainingDatabase[dateStr].length > 0) {
-                    el.classList.add('has-program');
-                }
-                if (selectedDate === dateStr) {
-                    el.classList.add('active');
-                }
-
-                el.innerText = d;
-                el.onclick = () => selectDate(dateStr, el);
-                grid.appendChild(el);
-            }
-        }
-
-        function selectDate(dateStr, element) {
-            document.querySelectorAll('.calendar-date').forEach(d => d.classList.remove('active'));
-            if(element) element.classList.add('active');
-            
-            selectedDate = dateStr;
-            renderProgram(dateStr);
-
-            // Show Add Button if Admin
-            if(isAdmin) document.getElementById('admin-add-area').style.display = 'flex';
-            else document.getElementById('admin-add-area').style.display = 'none';
-        }
-
-        function renderProgram(dateStr) {
-            const container = document.getElementById('program-content');
-            const program = trainingDatabase[dateStr] || [];
-
-            if (program.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; color: #999; margin-top: 50px;">
-                        <i class="fa-solid fa-mug-hot" style="font-size: 30px; display: block; margin-bottom: 10px;"></i>
-                        ไม่มีรายการฝึกสำหรับวันที่เลือก
-                    </div>`;
-                return;
-            }
-
-            let html = `<h1 style="border:none; text-align:left; font-size: 18pt; margin-top:20px;">วันที่: ${dateStr}</h1>`;
-            
-            program.forEach((item, index) => {
-                let mediaHtml = '';
-                if (item.media) {
-                    if (item.type === 'video' || item.media.includes('youtube') || item.media.includes('youtu.be')) {
-                        let videoId = '';
-                        if(item.media.includes('v=')) videoId = item.media.split('v=')[1].split('&')[0];
-                        else if(item.media.includes('youtu.be/')) videoId = item.media.split('youtu.be/')[1].split('?')[0];
-                        
-                        mediaHtml = `
-                            <div class="media-container">
-                                <div class="video-wrapper">
-                                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
-                                </div>
-                                <div class="img-caption">Video Tutorial</div>
-                            </div>`;
-                    } else {
-                        mediaHtml = `
-                            <div class="media-container">
-                                <img src="${item.media}" alt="Program Image">
-                                <div class="img-caption">Picture Reference</div>
-                            </div>`;
-                    }
-                }
-
-                const adminControls = isAdmin ? `
-                    <div class="admin-item-controls">
-                        <button class="btn-icon" onclick="openEditModal(${index})"><i class="fa-solid fa-pen"></i></button>
-                        <button class="btn-icon delete" onclick="deleteItem(${index})"><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                ` : '';
-
-                html += `
-                    <div class="section-block">
-                        <div class="h2-container">
-                            <h2>${item.time} : ${item.title}</h2>
-                            ${adminControls}
-                        </div>
-                        ${item.qty ? `<span class="qty-label">${item.qty}</span>` : ''}
-                        <p>${item.desc}</p>
-                        ${mediaHtml}
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html;
-        }
-
-        // --- Dynamic Qty Input Logic ---
-        function toggleQtyInputs() {
-            const type = document.getElementById('inp-qty-type').value;
-            const container = document.getElementById('qty-input-container');
-            container.innerHTML = '';
-
-            if (type === 'time') {
-                container.innerHTML = `
-                    <div class="qty-dynamic-wrapper">
-                        <input type="number" id="qty-val1" class="form-input" placeholder="ระบุตัวเลข">
-                        <select id="qty-unit-select" class="form-select" style="width: 100px; border:none; background:transparent; font-weight:600; color:#555;">
-                            <option value="นาที">นาที</option>
-                            <option value="วินาที">วินาที</option>
-                        </select>
-                    </div>
-                `;
-            } else if (type === 'sets') {
-                container.innerHTML = `
-                    <div class="qty-dynamic-wrapper">
-                        <input type="number" id="qty-val1" class="form-input" placeholder="จำนวนเซ็ต">
-                        <span class="qty-unit-label">เซ็ต x</span>
-                        <input type="number" id="qty-val2" class="form-input" placeholder="จำนวนครั้ง">
-                        <span class="qty-unit-label">ครั้ง</span>
-                    </div>
-                `;
-            } else {
-                // Custom
-                container.innerHTML = `
-                    <input type="text" id="qty-val1" class="form-input" placeholder="ระบุจำนวนและหน่วยเอง">
-                `;
-            }
-        }
-
-        // --- CRUD Modal Logic ---
-        function openEditModal(index = null) {
-            if(!selectedDate) return alert("กรุณาเลือกวันที่ก่อน");
-
+        window.openEditModal = (index = null) => {
+            if(!selectedDate) return alert("Select a date first");
             const modal = document.getElementById('edit-modal');
             const idxInput = document.getElementById('edit-index');
             
-            // Default Values
-            let item = { time: "", title: "", qty: "", desc: "", media: "" };
+            let item = { time: "", title: "", qty: "", desc: "", media: "", isCartoon: false };
             if (index !== null) {
                 item = trainingDatabase[selectedDate][index];
                 idxInput.value = index;
@@ -766,24 +475,19 @@
             document.getElementById('inp-title').value = item.title;
             document.getElementById('inp-desc').value = item.desc;
             document.getElementById('inp-media').value = item.media || '';
+            document.getElementById('inp-cartoon').checked = item.isCartoon || false;
 
-            // Parse Qty to fit dynamic inputs
+            // Qty Parsing
             const qtyStr = item.qty || "";
             let type = "custom";
             let val1 = qtyStr;
             let val2 = "";
-            let valUnit = "นาที"; // Default for time
+            let valUnit = "นาที";
 
-            // Try to detect format
             if (qtyStr.match(/^\d+\s*(นาที|วินาที)$/)) {
                 type = "time";
-                if(qtyStr.includes("นาที")) {
-                    val1 = qtyStr.replace("นาที", "").trim();
-                    valUnit = "นาที";
-                } else {
-                    val1 = qtyStr.replace("วินาที", "").trim();
-                    valUnit = "วินาที";
-                }
+                if(qtyStr.includes("นาที")) val1 = qtyStr.replace("นาที", "").trim();
+                else { val1 = qtyStr.replace("วินาที", "").trim(); valUnit = "วินาที"; }
             } else if (qtyStr.match(/^\d+\s*เซ็ต\s*x\s*\d+\s*ครั้ง$/)) {
                 type = "sets";
                 const parts = qtyStr.split('x');
@@ -792,9 +496,8 @@
             }
 
             document.getElementById('inp-qty-type').value = type;
-            toggleQtyInputs(); // Generate inputs first
+            window.toggleQtyInputs();
 
-            // Fill values after generation
             setTimeout(() => {
                 if(document.getElementById('qty-val1')) document.getElementById('qty-val1').value = val1;
                 if(document.getElementById('qty-val2')) document.getElementById('qty-val2').value = val2;
@@ -802,72 +505,203 @@
             }, 0);
             
             modal.style.display = 'flex';
-        }
+        };
 
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
+        window.closeModal = (id) => document.getElementById(id).style.display = 'none';
 
-        function saveActivity() {
+        window.toggleQtyInputs = () => {
+            const type = document.getElementById('inp-qty-type').value;
+            const container = document.getElementById('qty-input-container');
+            container.innerHTML = '';
+            if (type === 'time') {
+                container.innerHTML = `
+                    <div class="qty-dynamic-wrapper">
+                        <input type="number" id="qty-val1" class="form-input" placeholder="เลข">
+                        <select id="qty-unit-select" class="form-select" style="width:100px; border:none;"><option>นาที</option><option>วินาที</option></select>
+                    </div>`;
+            } else if (type === 'sets') {
+                container.innerHTML = `
+                    <div class="qty-dynamic-wrapper">
+                        <input type="number" id="qty-val1" class="form-input" placeholder="เซ็ต"> <span style="white-space:nowrap; font-size:0.9rem; color:#666;">เซ็ต x</span>
+                        <input type="number" id="qty-val2" class="form-input" placeholder="ครั้ง"> <span style="white-space:nowrap; font-size:0.9rem; color:#666;">ครั้ง</span>
+                    </div>`;
+            } else {
+                container.innerHTML = `<input type="text" id="qty-val1" class="form-input" placeholder="ระบุเอง">`;
+            }
+        };
+
+        window.saveActivity = async () => {
             if(!selectedDate) return;
-
             const index = document.getElementById('edit-index').value;
             const time = document.getElementById('inp-time').value;
             const title = document.getElementById('inp-title').value;
             const desc = document.getElementById('inp-desc').value;
             const media = document.getElementById('inp-media').value;
-            
-            // Construct Qty String
+            const isCartoon = document.getElementById('inp-cartoon').checked;
+
             const qtyType = document.getElementById('inp-qty-type').value;
             let qty = "";
             const val1 = document.getElementById('qty-val1') ? document.getElementById('qty-val1').value : "";
             const val2 = document.getElementById('qty-val2') ? document.getElementById('qty-val2').value : "";
 
-            if (val1) {
-                if (qtyType === 'time') {
-                    const unit = document.getElementById('qty-unit-select').value;
-                    qty = `${val1} ${unit}`;
-                } else if (qtyType === 'sets') {
-                    qty = `${val1} เซ็ต x ${val2} ครั้ง`;
-                } else {
-                    qty = val1;
-                }
+            if(val1) {
+                if(qtyType === 'time') qty = `${val1} ${document.getElementById('qty-unit-select').value}`;
+                else if(qtyType === 'sets') qty = `${val1} เซ็ต x ${val2} ครั้ง`;
+                else qty = val1;
             }
-            
-            // Auto detect media type
+
             let type = 'img';
             if(media.includes('youtube') || media.includes('youtu.be')) type = 'video';
 
-            const newItem = { time, title, qty, desc, media, type };
+            const newItem = { time, title, qty, desc, media, type, isCartoon };
+            
+            // Logic to update local then push to DB
+            let currentItems = trainingDatabase[selectedDate] ? [...trainingDatabase[selectedDate]] : [];
+            
+            if(index === "new") currentItems.push(newItem);
+            else currentItems[parseInt(index)] = newItem;
+            
+            currentItems.sort((a,b) => a.time.localeCompare(b.time));
 
-            if(!trainingDatabase[selectedDate]) trainingDatabase[selectedDate] = [];
-
-            if(index === "new") {
-                trainingDatabase[selectedDate].push(newItem);
-            } else {
-                trainingDatabase[selectedDate][parseInt(index)] = newItem;
-            }
-
-            // Sort by time (optional, simplistic sort string-based)
-            trainingDatabase[selectedDate].sort((a,b) => a.time.localeCompare(b.time));
-
-            saveData();
-            closeModal('edit-modal');
-        }
-
-        function deleteItem(index) {
-            if(confirm("ยืนยันการลบรายการนี้?")) {
-                trainingDatabase[selectedDate].splice(index, 1);
-                // Cleanup empty dates
-                if(trainingDatabase[selectedDate].length === 0) {
-                    delete trainingDatabase[selectedDate];
+            // Sync to DB
+            if(db) {
+                try {
+                    await setDoc(doc(db, "schedules", selectedDate), { items: currentItems });
+                    window.closeModal('edit-modal');
+                } catch(e) {
+                    alert("Error saving: " + e.message);
                 }
-                saveData();
+            } else {
+                // Offline Fallback
+                trainingDatabase[selectedDate] = currentItems;
+                localStorage.setItem('actilife_schedule_offline', JSON.stringify(trainingDatabase));
+                renderCalendar(currentMonth, currentYear);
+                renderProgram(selectedDate);
+                window.closeModal('edit-modal');
+            }
+        };
+
+        window.deleteItem = async (index) => {
+            if(!confirm("ลบรายการนี้?")) return;
+            let currentItems = [...trainingDatabase[selectedDate]];
+            currentItems.splice(index, 1);
+            
+            if(db) {
+                await setDoc(doc(db, "schedules", selectedDate), { items: currentItems });
+            } else {
+                trainingDatabase[selectedDate] = currentItems;
+                localStorage.setItem('actilife_schedule_offline', JSON.stringify(trainingDatabase));
+                renderCalendar(currentMonth, currentYear);
+                renderProgram(selectedDate);
+            }
+        };
+
+        // --- Render Logic (Same as before but moved into module scope) ---
+        const monthNamesThai = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+
+        function renderCalendar(month, year) {
+            const grid = document.getElementById('calendar-grid');
+            grid.innerHTML = "";
+            document.getElementById('month-year').innerText = `${monthNamesThai[month]} ${year + 543} (${year})`;
+
+            const dayNames = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
+            dayNames.forEach(name => {
+                const el = document.createElement('div'); el.className = 'calendar-day-head'; el.innerText = name; grid.appendChild(el);
+            });
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            for (let i = 0; i < firstDay; i++) {
+                const el = document.createElement('div'); el.className = 'calendar-date empty'; grid.appendChild(el);
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                const el = document.createElement('div'); el.className = 'calendar-date';
+                
+                if (trainingDatabase[dateStr] && trainingDatabase[dateStr].length > 0) el.classList.add('has-program');
+                if (selectedDate === dateStr) el.classList.add('active');
+
+                el.innerText = d;
+                el.onclick = () => selectDate(dateStr, el);
+                grid.appendChild(el);
             }
         }
 
-        window.onload = initApp;
-    </script>
+        function selectDate(dateStr, element) {
+            document.querySelectorAll('.calendar-date').forEach(d => d.classList.remove('active'));
+            if(element) element.classList.add('active');
+            selectedDate = dateStr;
+            renderProgram(dateStr);
+            updateAdminUI();
+        }
 
+        function renderProgram(dateStr) {
+            const container = document.getElementById('program-content');
+            const program = trainingDatabase[dateStr] || [];
+
+            if (program.length === 0) {
+                container.innerHTML = `<div style="text-align: center; color: #999; margin-top: 50px;"><i class="fa-solid fa-mug-hot" style="font-size: 30px; display: block; margin-bottom: 10px;"></i>ไม่มีรายการฝึก</div>`;
+                return;
+            }
+
+            let html = `<h1 style="border:none; text-align:left; font-size: 18pt; margin-top:20px;">วันที่: ${dateStr}</h1>`;
+            
+            program.forEach((item, index) => {
+                let mediaHtml = '';
+                if (item.media) {
+                    if (item.type === 'video') {
+                        let videoId = '';
+                        if(item.media.includes('v=')) videoId = item.media.split('v=')[1].split('&')[0];
+                        else if(item.media.includes('youtu.be/')) videoId = item.media.split('youtu.be/')[1].split('?')[0];
+                        mediaHtml = `<div class="media-container"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe></div></div>`;
+                    } else {
+                        const imgClass = item.isCartoon ? 'cartoon-filter' : '';
+                        mediaHtml = `<div class="media-container"><img src="${item.media}" class="${imgClass}" alt="Image"></div>`;
+                    }
+                }
+
+                const adminControls = isAdmin ? `
+                    <div class="admin-item-controls">
+                        <button class="btn-icon" onclick="window.openEditModal(${index})"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn-icon delete" onclick="window.deleteItem(${index})"><i class="fa-solid fa-trash"></i></button>
+                    </div>` : '';
+
+                html += `
+                    <div class="section-block">
+                        <div class="h2-container"><h2>${item.time} : ${item.title}</h2>${adminControls}</div>
+                        ${item.qty ? `<span class="qty-label">${item.qty}</span>` : ''}
+                        <p>${item.desc}</p>
+                        ${mediaHtml}
+                    </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function updateAdminUI() {
+            const badge = document.getElementById('admin-badge');
+            const addArea = document.getElementById('admin-add-area');
+            
+            if (isAdmin) {
+                badge.style.display = 'block';
+                if(selectedDate) addArea.style.display = 'flex';
+                // Re-render to show delete buttons
+                if(selectedDate) renderProgram(selectedDate);
+            } else {
+                badge.style.display = 'none';
+                addArea.style.display = 'none';
+                if(selectedDate) renderProgram(selectedDate);
+            }
+        }
+
+        // Check Admin session on load
+        if(sessionStorage.getItem('actilife_admin') === 'true') {
+            isAdmin = true;
+            updateAdminUI();
+        }
+
+        renderCalendar(currentMonth, currentYear);
+    </script>
 </body>
 </html>
